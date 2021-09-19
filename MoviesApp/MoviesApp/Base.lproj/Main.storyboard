@@ -118,7 +118,7 @@
         <scene sceneID="Uwc-pq-WaQ">
             <objects>
                 <navigationController id="Wye-6X-VQK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorites" image="hand.thumbsup.fill" catalog="system" id="QYq-fb-Uhz"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="heartOff" id="QYq-fb-Uhz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="V3M-fB-Ef9">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -226,7 +226,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="hand.thumbsup.fill" catalog="system" width="128" height="121"/>
+        <image name="heartOff" width="24" height="24"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="play.circle.fill" catalog="system" width="128" height="121"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>

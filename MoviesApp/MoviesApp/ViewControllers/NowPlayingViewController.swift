@@ -22,16 +22,25 @@ class NowPlayingViewController: UIViewController {
         
         nowPlayingTableView.delegate = self
         nowPlayingTableView.dataSource = self
+        
+        registerCells()
+    }
+    
+    func registerCells() {
+        self.nowPlayingTableView.register(UINib(nibName: "MovieItemTableViewCell", bundle: nil), forCellReuseIdentifier: "MovieItemTableViewCell")
     }
 }
 
 extension NowPlayingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        if let cell = nowPlayingTableView.dequeueReusableCell(withIdentifier: "MovieItemTableViewCell", for: indexPath) as? MovieItemTableViewCell {
+            return cell
+         }
+         return UITableViewCell()
     }
     
 }

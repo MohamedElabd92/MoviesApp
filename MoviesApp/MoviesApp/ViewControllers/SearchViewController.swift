@@ -22,16 +22,25 @@ class SearchViewController: UIViewController {
         
         searchTableView.delegate = self
         searchTableView.dataSource = self
+        
+        registerCells()
+    }
+    
+    func registerCells() {
+        self.searchTableView.register(UINib(nibName: "MovieItemTableViewCell", bundle: nil), forCellReuseIdentifier: "MovieItemTableViewCell")
     }
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        if let cell = searchTableView.dequeueReusableCell(withIdentifier: "MovieItemTableViewCell", for: indexPath) as? MovieItemTableViewCell {
+            return cell
+         }
+         return UITableViewCell()
     }
     
 }

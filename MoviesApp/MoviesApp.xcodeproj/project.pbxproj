@@ -16,6 +16,9 @@
 		9A563C8726F7E14E0072F95F /* TopRatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A563C8626F7E14E0072F95F /* TopRatedViewController.swift */; };
 		9A563C8926F7E1650072F95F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A563C8826F7E1650072F95F /* SearchViewController.swift */; };
 		9A563C8B26F7E1870072F95F /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A563C8A26F7E1870072F95F /* FavoritesViewController.swift */; };
+		9A563C8F26F7E7300072F95F /* MovieItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A563C8D26F7E7300072F95F /* MovieItemTableViewCell.swift */; };
+		9A563C9026F7E7300072F95F /* MovieItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A563C8E26F7E7300072F95F /* MovieItemTableViewCell.xib */; };
+		9A563C9326F7E8ED0072F95F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A563C9226F7E8ED0072F95F /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		9A563C8626F7E14E0072F95F /* TopRatedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopRatedViewController.swift; sourceTree = "<group>"; };
 		9A563C8826F7E1650072F95F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		9A563C8A26F7E1870072F95F /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		9A563C8D26F7E7300072F95F /* MovieItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieItemTableViewCell.swift; sourceTree = "<group>"; };
+		9A563C8E26F7E7300072F95F /* MovieItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieItemTableViewCell.xib; sourceTree = "<group>"; };
+		9A563C9226F7E8ED0072F95F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,8 @@
 			isa = PBXGroup;
 			children = (
 				9A563C8526F7E0A90072F95F /* ViewControllers */,
+				9A563C8C26F7E7030072F95F /* TableViewCells */,
+				9A563C9126F7E8D40072F95F /* Helpers */,
 				9A563C7126F7C1D30072F95F /* AppDelegate.swift */,
 				9A563C7326F7C1D30072F95F /* SceneDelegate.swift */,
 				9A563C7726F7C1D30072F95F /* Main.storyboard */,
@@ -82,6 +90,23 @@
 				9A563C8A26F7E1870072F95F /* FavoritesViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		9A563C8C26F7E7030072F95F /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				9A563C8D26F7E7300072F95F /* MovieItemTableViewCell.swift */,
+				9A563C8E26F7E7300072F95F /* MovieItemTableViewCell.xib */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		9A563C9126F7E8D40072F95F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				9A563C9226F7E8ED0072F95F /* Extensions.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A563C7E26F7C1D50072F95F /* LaunchScreen.storyboard in Resources */,
+				9A563C9026F7E7300072F95F /* MovieItemTableViewCell.xib in Resources */,
 				9A563C7B26F7C1D50072F95F /* Assets.xcassets in Resources */,
 				9A563C7926F7C1D30072F95F /* Main.storyboard in Resources */,
 			);
@@ -154,8 +180,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A563C8F26F7E7300072F95F /* MovieItemTableViewCell.swift in Sources */,
 				9A563C8926F7E1650072F95F /* SearchViewController.swift in Sources */,
 				9A563C7626F7C1D30072F95F /* NowPlayingViewController.swift in Sources */,
+				9A563C9326F7E8ED0072F95F /* Extensions.swift in Sources */,
 				9A563C8726F7E14E0072F95F /* TopRatedViewController.swift in Sources */,
 				9A563C7226F7C1D30072F95F /* AppDelegate.swift in Sources */,
 				9A563C8B26F7E1870072F95F /* FavoritesViewController.swift in Sources */,

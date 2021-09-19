@@ -22,16 +22,25 @@ class FavoritesViewController: UIViewController {
         
         favoriteTableView.delegate = self
         favoriteTableView.dataSource = self
+        
+        registerCells()
+    }
+    
+    func registerCells() {
+        self.favoriteTableView.register(UINib(nibName: "MovieItemTableViewCell", bundle: nil), forCellReuseIdentifier: "MovieItemTableViewCell")
     }
 }
 
 extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        if let cell = favoriteTableView.dequeueReusableCell(withIdentifier: "MovieItemTableViewCell", for: indexPath) as? MovieItemTableViewCell {
+            return cell
+         }
+         return UITableViewCell()
     }
     
 }

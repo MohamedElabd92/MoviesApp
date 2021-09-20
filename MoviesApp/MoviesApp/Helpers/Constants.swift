@@ -12,6 +12,7 @@ class Constants {
     static let baseUrl = "https://api.themoviedb.org/3/"
     static let nowPlaying = "movie/now_playing"
     static let topRated = "movie/top_rated"
+    static let genreList = "genre/movie/list"
     static let config = "configuration"
     
     static func getNowPlayingURL(pageNumber: Int) -> String {
@@ -39,6 +40,16 @@ class Constants {
         fullUrl.queryItems = [URLQueryItem(name: "api_key", value: apiKey),
                               URLQueryItem(name: "language", value: "en-US"),
                               URLQueryItem(name: "page", value: "\(pageNumber)")]
+        
+        return fullUrl.url?.absoluteString ?? ""
+    }
+    
+    static func getGenreListURL() -> String {
+        let genreListUrl = baseUrl + genreList
+        var fullUrl = URLComponents(string: genreListUrl) ?? URLComponents()
+        
+        fullUrl.queryItems = [URLQueryItem(name: "api_key", value: apiKey),
+                              URLQueryItem(name: "language", value: "en-US")]
         
         return fullUrl.url?.absoluteString ?? ""
     }

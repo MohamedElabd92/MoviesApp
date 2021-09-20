@@ -28,12 +28,17 @@ protocol GenreListDelegate: AnyObject {
     func getGenreListResponse(model: GenreListModel)
 }
 
+protocol SearchListDelegate: AnyObject {
+    func getSearchListResponse(model: MoviesModel)
+}
+
 class MoviesViewModel {
     var nowPlayingDelegate: NowPlayingDelegate?
     var errorDelegate: ErrorDelegate?
     var configurationDelegate: ConfigurationDelegate?
     var topRatedDelegate: TopRatedDelegate?
     var genreListDelegate: GenreListDelegate?
+    var searchListDelegate: SearchListDelegate?
     
     func getConfig() {
         let url = Constants.getConfigURL()
@@ -117,6 +122,29 @@ class MoviesViewModel {
                 case .success:
                     let model = try JSONDecoder().decode(GenreListModel.self, from: data)
                     self.genreListDelegate?.getGenreListResponse(model: model)
+                    
+                case let .failure(error):
+                    self.errorDelegate?.showErrorMessage(message: error.errorDescription ?? "")
+                }
+                
+            } catch {
+                self.errorDelegate?.showErrorMessage(message: error.localizedDescription)
+            }
+        }
+    }
+    
+    func getSearchList(pageNumber: Int, searchText: String) {
+        let url = Constants.getSearchURL(pageNumber: pageNumber, searchText: searchText)
+        
+        AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil, interceptor: nil).responseJSON { response in
+            guard let data = response.data else {return}
+            self.printResponse(res: response, url: url)
+            
+            do {
+                switch response.result {
+                case .success:
+                    let model = try JSONDecoder().decode(MoviesModel.self, from: data)
+                    self.searchListDelegate?.getSearchListResponse(model: model)
                     
                 case let .failure(error):
                     self.errorDelegate?.showErrorMessage(message: error.errorDescription ?? "")

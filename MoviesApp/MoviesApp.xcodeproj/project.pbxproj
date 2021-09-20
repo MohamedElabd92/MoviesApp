@@ -23,6 +23,7 @@
 		9A563C9826F80C8C0072F95F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A563C9726F80C8C0072F95F /* Constants.swift */; };
 		9A563C9B26F810670072F95F /* MoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A563C9A26F810670072F95F /* MoviesModel.swift */; };
 		9A563C9F26F825D70072F95F /* ConfigurationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A563C9E26F825D70072F95F /* ConfigurationModel.swift */; };
+		9A563CA126F837BE0072F95F /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A563CA026F837BE0072F95F /* Utility.swift */; };
 		D014E6CC725DC6B3AD35712B /* Pods_MoviesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C1FAB4BA02E99BC697C6305 /* Pods_MoviesApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		9A563C9726F80C8C0072F95F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9A563C9A26F810670072F95F /* MoviesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesModel.swift; sourceTree = "<group>"; };
 		9A563C9E26F825D70072F95F /* ConfigurationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationModel.swift; sourceTree = "<group>"; };
+		9A563CA026F837BE0072F95F /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 			children = (
 				9A563C9226F7E8ED0072F95F /* Extensions.swift */,
 				9A563C9726F80C8C0072F95F /* Constants.swift */,
+				9A563CA026F837BE0072F95F /* Utility.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				9A563C9326F7E8ED0072F95F /* Extensions.swift in Sources */,
 				9A563C9626F809120072F95F /* MoviesViewModel.swift in Sources */,
 				9A563C9826F80C8C0072F95F /* Constants.swift in Sources */,
+				9A563CA126F837BE0072F95F /* Utility.swift in Sources */,
 				9A563C8726F7E14E0072F95F /* TopRatedViewController.swift in Sources */,
 				9A563C7226F7C1D30072F95F /* AppDelegate.swift in Sources */,
 				9A563C9B26F810670072F95F /* MoviesModel.swift in Sources */,

@@ -9,6 +9,8 @@ import UIKit
 
 class FavoritesViewController: UIViewController {
     @IBOutlet weak var favoriteTableView: UITableView!
+    @IBOutlet weak var emptyStateConatinerView: UIView!
+    @IBOutlet weak var imageVerticalConstraint: NSLayoutConstraint!
     
     var results = [ResultsObject]()
     
@@ -22,8 +24,19 @@ class FavoritesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        results = Utility.getFavoriteMovies()
-        favoriteTableView.reloadData()
+        favoriteButtonDidTapped()
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        
+        if imageVerticalConstraint != nil {
+            if (UIWindow.isLandscape) {
+                imageVerticalConstraint.constant = -100
+            } else {
+                imageVerticalConstraint.constant = 0
+            }
+        }
     }
     
     func initialSetup() {
@@ -58,6 +71,14 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
 extension FavoritesViewController: MovieItemCellDelegate {
     func favoriteButtonDidTapped() {
         results = Utility.getFavoriteMovies()
-        favoriteTableView.reloadData()
+        
+        if results.isEmpty {
+            favoriteTableView.isHidden = true
+            emptyStateConatinerView.isHidden = false
+        } else {
+            favoriteTableView.isHidden = false
+            emptyStateConatinerView.isHidden = true
+            favoriteTableView.reloadData()
+        }
     }
 }

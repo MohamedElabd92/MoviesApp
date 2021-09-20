@@ -9,6 +9,7 @@ import UIKit
 import ProgressHUD
 
 var configurationModel = ConfigurationModel()
+var genreListModel = GenreListModel()
 
 class NowPlayingViewController: UIViewController {
     @IBOutlet weak var nowPlayingTableView: UITableView!
@@ -49,7 +50,9 @@ class NowPlayingViewController: UIViewController {
         moviesViewModel.nowPlayingDelegate = self
         moviesViewModel.errorDelegate = self
         moviesViewModel.configurationDelegate = self
+        moviesViewModel.genreListDelegate = self
         moviesViewModel.getConfig()
+        moviesViewModel.getGenreList()
     }
     
     func showLoadMoreSpinner() -> UIView {
@@ -76,6 +79,13 @@ extension NowPlayingViewController: UITableViewDelegate, UITableViewDataSource {
          }
          return UITableViewCell()
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController {
+            vc.result = results[indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 extension NowPlayingViewController: NowPlayingDelegate {
@@ -101,6 +111,12 @@ extension NowPlayingViewController: ConfigurationDelegate {
         configurationModel = model
         
         moviesViewModel.getNowPlayingList(pageNumber: pageNumber)
+    }
+}
+
+extension NowPlayingViewController: GenreListDelegate {
+    func getGenreListResponse(model: GenreListModel) {
+        genreListModel = model
     }
 }
 

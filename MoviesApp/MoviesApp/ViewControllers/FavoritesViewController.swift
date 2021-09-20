@@ -66,6 +66,13 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
          }
          return UITableViewCell()
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController {
+            vc.result = results[indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 extension FavoritesViewController: MovieItemCellDelegate {

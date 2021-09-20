@@ -9,6 +9,10 @@ import UIKit
 
 var imageCache = NSCache<NSString, UIImage>()
 
+protocol MovieItemCellDelegate: AnyObject {
+    func favoriteButtonDidTapped()
+}
+
 class MovieItemTableViewCell: UITableViewCell {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var movieImage: UIImageView!
@@ -18,6 +22,8 @@ class MovieItemTableViewCell: UITableViewCell {
     @IBOutlet weak var starImage: UIImageView!
     
     var model: ResultsObject?
+    var dataDelegate: MovieItemCellDelegate?
+    
         
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -113,6 +119,8 @@ class MovieItemTableViewCell: UITableViewCell {
                 Utility.addToFavoriteMovies(data: model)
             }
         }
+        
+        dataDelegate?.favoriteButtonDidTapped()
     }
     
     func downloadImage(urlString: String, completion: @escaping (_ response: Data?) -> Void) {

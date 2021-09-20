@@ -24,6 +24,11 @@ class NowPlayingViewController: UIViewController {
         
         initialSetup()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        nowPlayingTableView.reloadData()
+    }
 
     func initialSetup() {
         self.title = "Now Playing"

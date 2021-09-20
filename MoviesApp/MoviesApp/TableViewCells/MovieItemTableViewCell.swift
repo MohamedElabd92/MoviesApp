@@ -7,6 +7,8 @@
 
 import UIKit
 
+var imageCache = NSCache<NSString, UIImage>()
+
 class MovieItemTableViewCell: UITableViewCell {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var movieImage: UIImageView!
@@ -39,10 +41,36 @@ class MovieItemTableViewCell: UITableViewCell {
         containerView.setCornerRadius(value: 5)
         
         movieImage.image = UIImage(named: "moviePlaceholder")
-        movieTitle.text = "Title"
-        movieRating.text = "Rating"
+        movieTitle.text = ""
+        movieRating.text = ""
         
         setImage(isFavorite: false)
+    }
+    
+    func setData(model: ResultsObject) {
+        movieTitle.text = model.title
+        movieRating.text = "\(model.vote_average ?? 0.0)"
+        
+        let imageUrl = getPosterUrl(model: model)
+        
+        if let image = imageCache.object(forKey: imageUrl as NSString) {
+            self.movieImage.image = image
+        } else {
+            downloadImage(urlString: imageUrl) { data in
+                if let data = data {
+                    self.movieImage.image = UIImage(data: data)
+                }
+            }
+        }
+    }
+    
+    func getPosterUrl(model: ResultsObject) -> String {
+        var imageSize = "w500"
+        if !(configurationModel.images?.poster_sizes?.contains("w500") ?? false) {
+            imageSize = "original"
+        }
+        
+        return (configurationModel.images?.secure_base_url ?? "") + imageSize + (model.poster_path ?? "")
     }
     
     func setImage(isFavorite: Bool) {
@@ -63,5 +91,27 @@ class MovieItemTableViewCell: UITableViewCell {
         }
     }
     
+    func downloadImage(urlString: String, completion: @escaping (_ response: Data?) -> Void) {
+        DispatchQueue.global(qos: .background).async {
+            if let url = URL(string: urlString) {
+                URLSession.shared.dataTask(with: URLRequest(url: url)) { (data, response, _) -> Void in
+                    if let httpResponse = response as? HTTPURLResponse {
+                        if httpResponse.statusCode == 200 {
+                            print("Image downloaded successfully. url = \(urlString)")
+                        } else {
+                            print("Failed to download image. url = \(urlString)")
+                        }
+                    }
+                    
+                    DispatchQueue.main.async {
+                        if let data = data {
+                            completion(data)
+                            imageCache.setObject(UIImage(data: data) ?? UIImage(), forKey: urlString as NSString)
+                        }
+                    }
+                }.resume()
+            }
+        }
+    }
 }
 

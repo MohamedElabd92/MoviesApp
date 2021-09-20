@@ -238,7 +238,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xQn-yt-Pyk">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movieDetailsPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="xQn-yt-Pyk">
                                 <rect key="frame" x="10" y="54" width="394" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="Reo-OF-Ahd"/>
@@ -412,6 +412,7 @@
         <image name="genre" width="12" height="12"/>
         <image name="heartOff" width="24" height="24"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="movieDetailsPlaceholder" width="430" height="193"/>
         <image name="noFavorite" width="128" height="128"/>
         <image name="play.circle.fill" catalog="system" width="128" height="121"/>
         <image name="search" width="128" height="128"/>

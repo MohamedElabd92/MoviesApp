@@ -16,17 +16,6 @@ class Constants {
     static let searchMovie = "search/movie"
     static let config = "configuration"
     
-    /*
-     https://api.themoviedb.org/3/
-     search/movie
-     
-     ?api_key=<<api_key>>
-     &language=en-US
-     &query=sss&
-     page=1
-     &include_adult=false
-     */
-    
     static func getNowPlayingURL(pageNumber: Int) -> String {
         let nowPlayingUrl = baseUrl + nowPlaying
         var fullUrl = URLComponents(string: nowPlayingUrl) ?? URLComponents()

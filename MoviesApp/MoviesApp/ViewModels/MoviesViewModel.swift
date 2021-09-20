@@ -20,10 +20,15 @@ protocol ConfigurationDelegate: AnyObject {
     func getConfigurationResponse(model: ConfigurationModel)
 }
 
+protocol TopRatedDelegate: AnyObject {
+    func getTopRatedResponse(model: MoviesModel)
+}
+
 class MoviesViewModel {
     var nowPlayingDelegate: NowPlayingDelegate?
     var errorDelegate: ErrorDelegate?
     var configurationDelegate: ConfigurationDelegate?
+    var topRatedDelegate: TopRatedDelegate?
     
     func getConfig() {
         let url = Constants.getConfigURL()
@@ -63,6 +68,31 @@ class MoviesViewModel {
                 case .success:
                     let model = try JSONDecoder().decode(MoviesModel.self, from: data)
                     self.nowPlayingDelegate?.getNowPlayingResponse(model: model)
+                    
+                case let .failure(error):
+                    print(error)
+                    self.errorDelegate?.showErrorMessage(message: error.errorDescription ?? "")
+                }
+                
+            } catch {
+                print(error)
+                self.errorDelegate?.showErrorMessage(message: error.localizedDescription)
+            }
+        }
+    }
+    
+    func getTopRatedList(pageNumber: Int) {
+        let url = Constants.getTopRatedURL(pageNumber: pageNumber)
+        
+        AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil, interceptor: nil).responseJSON { response in
+            guard let data = response.data else {return}
+            self.printResponse(res: response, url: url)
+            
+            do {
+                switch response.result {
+                case .success:
+                    let model = try JSONDecoder().decode(MoviesModel.self, from: data)
+                    self.topRatedDelegate?.getTopRatedResponse(model: model)
                     
                 case let .failure(error):
                     print(error)

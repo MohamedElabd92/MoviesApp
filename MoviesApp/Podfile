@@ -1,0 +1,9 @@
+platform :ios, '11.0'
+
+target 'MoviesApp' do
+  use_frameworks!
+
+  pod 'Alamofire'
+  pod 'ProgressHUD'
+
+end
